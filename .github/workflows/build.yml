@@ -55,10 +55,3 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-  # scan:
-  #   name: "Scan latest release"
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: azure/container-scan@v0
-  #       with:
-  #         image-name: ghcr.io/st3ga/dumputils:latest

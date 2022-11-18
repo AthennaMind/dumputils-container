@@ -1,0 +1,10 @@
+name: Security Scan of ghcr.io/st3ga/dumputils:latest
+on: [workflow_dispatch]
+jobs:
+  scan:
+    name: "Scan latest release"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: azure/container-scan@v0
+        with:
+          image-name: ghcr.io/st3ga/dumputils:latest
