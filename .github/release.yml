@@ -1,0 +1,19 @@
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - ihatemodels
+  categories:
+    - title: Added Utils ⚙️
+      labels:
+        - utils
+    - title: Removed Utils ❌
+      labels:
+        - breaking-change
+    - title: Helper Changes 🪛
+      labels:
+        - enhancement
+    - title: Other Changes
+      labels:
+        - "*"
