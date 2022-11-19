@@ -1,6 +1,8 @@
 # Dumputils Container
 
-[![build](https://github.com/st3ga/dumputils-container/actions/workflows/build.yml/badge.svg)](https://github.com/st3ga/dumputils-container/actions/workflows/build.yml) **`🚀 blazingly-usefull! Please contribute if you have anything to add!`**
+![license](https://img.shields.io/github/license/st3ga/dumputils-container) [![build](https://github.com/st3ga/dumputils-container/actions/workflows/build.yml/badge.svg)](https://github.com/st3ga/dumputils-container/actions/workflows/build.yml) ![pulls](https://img.shields.io/docker/pulls/st3ga/dumputils?style=flat)  
+
+ **`🚀 blazingly-usefull! Please contribute if you have anything to add!`**
 
 <img src="assets/banner.gif" width="1005" height="430">
 
