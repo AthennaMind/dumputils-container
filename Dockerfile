@@ -10,6 +10,8 @@ COPY .bash /root/.bash/
     # create base dirs
 RUN mkdir -p /opt/backups /root/.config /root/.kube \
     && find /root/bin/ -type f -print0 | xargs -0 chmod +x \
+    # symlink python3 to python
+    && ln -s /usr/bin/python3 /usr/bin/python \
     # install base packages
     && apt-get update -y \
     && apt-get install -y --no-install-recommends \
@@ -65,4 +67,4 @@ RUN cd /tmp/ \
 
 WORKDIR /root
 
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["/bin/bash"]

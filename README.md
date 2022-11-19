@@ -45,23 +45,21 @@ This container provides easy access to most backup/restore utils for managing da
     - **[mongostat](https://www.mongodb.com/docs/database-tools/mongostat/)**
     - **[mongotop](https://www.mongodb.com/docs/database-tools/mongotop/)**
 
-- **MariaDB Client Tools**
-    - **mysql**
-    - **mysql_find_rows**
-    - **mysql_fix_extensions**
-    - **mysql_waitpid**
-    - **mysqlaccess**
-    - **mysqladmin**
-    - **mysqlanalyze**
-    - **mysqlcheck**
+- **MariaDB Client Tools version 10.8**
+    - **[mysql](https://mariadb.com/kb/en/mysql-command-line-client/)**
+    - **[mysql_find_rows](https://mariadb.com/kb/en/mysql_find_rows/)**
+    - **[mysql_fix_extensions](https://mariadb.com/kb/en/mysql_fix_extensions/)**
+    - **[mysql_waitpid](https://mariadb.com/kb/en/mysql_find_rows/)**
+    - **[mysqlaccess](https://mariadb.com/kb/en/mysqlaccess/)**
+    - **[mysqladmin](https://mariadb.com/kb/en/mysqladmin/)**
+    - **[mysqlanalyze](https://www.commandlinux.com/man-page/man1/mysqlanalyze.1.html)**
+    - **[mysqlcheck](https://mariadb.com/kb/en/mysqlcheck/)**
     - **[mysqldump](https://mariadb.com/kb/en/mariadb-dumpmysqldump/)**
-    - **mysqldumpslow**
-    - **mysqlimport**
-    - **mysqloptimize**
-    - **mysqlrepair**
-    - **mysqlreport**
-    - **mysqlshow**
-    - **mysqlslap**
+    - **[mysqlimport](https://mariadb.com/kb/en/mysqldumpslow/)**
+    - **[mysqlrepair](https://www.commandlinux.com/man-page/man1/mysqlrepair.1.html)**
+    - **[mysqlreport](https://mariadb.com/kb/en/mysqlreport/)**
+    - **[mysqlshow](https://mariadb.com/kb/en/mysqlshow/)**
+    - **[mysqlslap](https://mariadb.com/kb/en/mysqlslap/)**
 
 - **[kubectl](https://kubernetes.io/docs/reference/kubectl/) latest stable version**
 - **[MinIO Client](https://min.io/docs/minio/linux/reference/minio-mc.html) latest stable version**
