@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dumputils-storage
+  namespace: dumputils
+spec:
+  resources:
+    requests:
+      storage: 5Gi # increase to match your expectations
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce

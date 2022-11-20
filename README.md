@@ -20,6 +20,8 @@ Table of Contents
     *  **[Build](#build)**  
  * **[Examples](#examples)**
     * **[Backup PostgreSQL and upload to S3](<#backup-postgresql-and-upload-to-s3>)**
+    * **[Use your existing credentials](<#use-your-existing-credentials>)**
+    * **[Run inside Kubernetes](<#run-inside-kubernetes>)**
 <!--te-->
 
 ## What is it
@@ -132,3 +134,66 @@ user@machine: docker run --rm --name dumputils -h dumputils -v /opt/backups:/opt
 ```
 
 You can find the tar file in /opt/backups inside your host machine after you exit the container.
+
+### Use your existing credentials
+
+```bash
+docker run --rm --name dumputils -h dumputils \
+-v /opt/backups:/opt/backups \
+-v $HOME/.config/kube:/root/.config/kube \
+-v $HOME/.aws/:/root/.aws \
+-v $HOME/.azure:/root/.azure \
+-it st3ga/dumputils:latest
+```
+
+### Run inside Kubernetes
+
+- Deploy the stack
+
+You can increase the volume size of your data mounted in /opt/backups to match your needs. The default value is 5 Gigs which is suitable only for small backups and test purposes. You can entairly remove the Persistence Volume Claim if you plan to directly upload your backup right after it is created. 
+
+```bash
+kubectl apply -f examples/k8s/deployment/ 
+```
+
+- Validate 
+
+```bash
+kubectl get all -n dumputils
+
+NAME                             READY   STATUS    RESTARTS   AGE
+pod/dumputils-5db9795564-ct87j   1/1     Running   0          1m
+
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/dumputils   1/1     1            1           1m
+
+NAME                                   DESIRED   CURRENT   READY   AGE
+replicaset.apps/dumputils-5db9795564   1         1         1       1m
+
+kubectl get pvc -n dumputils
+
+NAME                STATUS   VOLUME    CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+dumputils-storage   Bound    pvc-xxx   5Gi        RWO            local-path     1m
+```
+
+- Use 
+
+From now on you can use your dumputils instance by starting a shell with the following commands
+
+```bash
+kubectl exec -it \
+$(kubectl get pods --template '{{range .items}}{{.metadata.name}}{{end}}' --selector=app=dumputils -n dumputils) \
+-n dumputils -- /bin/bash
+
+-----------------------------------------------------------------------------------------------
+
+      ██████╗ ██╗   ██╗███╗   ███╗██████╗       ██╗   ██╗████████╗██╗██╗     ███████╗
+      ██╔══██╗██║   ██║████╗ ████║██╔══██╗      ██║   ██║╚══██╔══╝██║██║     ██╔════╝
+      ██║  ██║██║   ██║██╔████╔██║██████╔╝█████╗██║   ██║   ██║   ██║██║     ███████╗
+      ██║  ██║██║   ██║██║╚██╔╝██║██╔═══╝ ╚════╝██║   ██║   ██║   ██║██║     ╚════██║
+      ██████╔╝╚██████╔╝██║ ╚═╝ ██║██║           ╚██████╔╝   ██║   ██║███████╗███████║
+      ╚═════╝  ╚═════╝ ╚═╝     ╚═╝╚═╝            ╚═════╝    ╚═╝   ╚═╝╚══════╝╚══════╝
+
+┌─[root@dumputils]─[~]
+└──╼ #
+```

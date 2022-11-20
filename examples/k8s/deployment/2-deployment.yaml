@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dumputils
+  namespace: dumputils
+  labels:
+    app.kubernetes.io/name: dumputils
+    name: dumputils
+    app: dumputils
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate # Ensure only one instance is running at a time
+  selector:
+    matchLabels:
+      app: dumputils
+  template:
+    metadata:
+      labels:
+        app: dumputils
+    spec:
+      hostname: dumputils
+      terminationGracePeriodSeconds: 60
+      containers:
+        - name: dumputils-shell
+          image: st3ga/dumputils:latest
+          imagePullPolicy: IfNotPresent
+          command: ["sh", "-c", "tail -f /dev/null"]
+          resources: {}
+          # uncomment if you know what you are doing
+          # limits:
+          #   cpu: 2000m
+          #   memory: 4096Mi
+          # requests:
+          #   cpu: 100m
+          #   memory: 256Mi
+          volumeMounts:
+            - mountPath: /opt/backups
+              name: dumputils-storage
+          livenessProbe:
+            exec:
+              command:
+                - cat
+                - /root/.bashrc
+            initialDelaySeconds: 2
+            periodSeconds: 10
+            timeoutSeconds: 2
+            successThreshold: 1
+            failureThreshold: 3
+      volumes:
+        - name: dumputils-storage
+          persistentVolumeClaim:
+            claimName: dumputils-storage

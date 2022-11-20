@@ -32,7 +32,7 @@ fi
 if [ -x "$(command -v kubectl)" ]; then
     source <(kubectl completion bash)
 fi
-
+ 
 # "bat" as manpager
 if [ -x "$(command -v bat)" ]; then
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
