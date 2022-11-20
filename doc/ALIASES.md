@@ -48,5 +48,6 @@ This container provides the following bash aliases
 | pg_dumpall13    |  /usr/lib/postgresql/13/bin/pg_dumpall     |
 | pg_dumpall14    |  /usr/lib/postgresql/14/bin/pg_dumpall     |
 | pg_dumpall15    |  /usr/lib/postgresql/15/bin/pg_dumpall     |
+| p_copy          |  /usr/bin/timescaledb-parallel-copy        |
 
 ![aliases](../assets/aliases.gif)

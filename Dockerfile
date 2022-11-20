@@ -1,3 +1,15 @@
+FROM golang:1.19.3-alpine AS timescaledb-parallel-copy-builder
+ENV TS_PARALLEL_COPY_VERSION="v0.4.0"
+RUN apk add git --no-cache
+
+WORKDIR /build
+
+RUN git clone https://github.com/timescale/timescaledb-parallel-copy.git \
+    && cd timescaledb-parallel-copy \
+    && git checkout ${TS_PARALLEL_COPY_VERSION} \
+    && cd cmd/timescaledb-parallel-copy \
+    && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /build/timescaledb-parallel-copy
+
 FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -6,6 +18,7 @@ COPY doc /root/doc/
 COPY bin /root/bin/
 COPY .bashrc /root/
 COPY .bash /root/.bash/
+COPY --from=timescaledb-parallel-copy-builder /build/timescaledb-parallel-copy /usr/bin/
 
     # create base dirs
 RUN mkdir -p /opt/backups /root/.config /root/.kube \

@@ -24,6 +24,8 @@ fi
 # show the aliases
 alias aliases='bat -pp /root/doc/ALIASES.md'
 
+alias p_copy='/usr/bin/timescaledb-parallel-copy'
+
 # pg_dump aliases
 alias pg_dump10='/usr/lib/postgresql/10/bin/pg_dump'
 alias pg_dump11='/usr/lib/postgresql/11/bin/pg_dump'
