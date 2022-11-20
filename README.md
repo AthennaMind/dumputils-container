@@ -38,7 +38,7 @@ This container provides easy access to most backup/restore utils for managing da
     - **[pg_dumpall](https://www.postgresql.org/docs/current/app-pg-dumpall.html)**
     - **[pg_restore](https://www.postgresql.org/docs/current/app-pgrestore.html)**
 
-- **[timescaledb-parallel-copy](https://github.com/timescale/timescaledb-parallel-copy) version v0.4.0 build from surce**
+- **[timescaledb-parallel-copy](https://github.com/timescale/timescaledb-parallel-copy) version v0.4.0 build from source**
 
 - **Mongo tools version 100.5.2**
     - **[mongodump](https://www.mongodb.com/docs/database-tools/mongodump/)**
@@ -152,7 +152,7 @@ docker run --rm --name dumputils -h dumputils \
 
 - Deploy the stack
 
-You can increase the volume size of your data mounted in /opt/backups to match your needs. The default value is 5 Gigs which is suitable only for small backups and test purposes. You can entairly remove the Persistence Volume Claim if you plan to directly upload your backup right after it is created. 
+Increase the [volume size](https://github.com/st3ga/dumputils-container/blob/main/examples/k8s/deployment/1-pvc.yaml#L9) of your data mounted in /opt/backups to match your needs. The default value is 5 Gigabytes which is suitable only for small backups and test purposes. You can entirely remove the Persistence Volume Claim if you plan to directly upload your backups somewhere right after creation. 
 
 ```bash
 kubectl apply -f examples/k8s/deployment/ 
@@ -184,7 +184,9 @@ From now on you can use your dumputils instance by starting a shell with the fol
 
 ```bash
 kubectl exec -it \
-$(kubectl get pods --template '{{range .items}}{{.metadata.name}}{{end}}' --selector=app=dumputils -n dumputils) \
+$(kubectl get pods --template \
+'{{range .items}}{{.metadata.name}}{{end}}' \
+--selector=app=dumputils -n dumputils) \
 -n dumputils -- /bin/bash
 
 -----------------------------------------------------------------------------------------------
