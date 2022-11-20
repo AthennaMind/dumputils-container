@@ -38,6 +38,8 @@ This container provides easy access to most backup/restore utils for managing da
     - **[pg_dumpall](https://www.postgresql.org/docs/current/app-pg-dumpall.html)**
     - **[pg_restore](https://www.postgresql.org/docs/current/app-pgrestore.html)**
 
+- **[timescaledb-parallel-copy](https://github.com/timescale/timescaledb-parallel-copy) version v0.4.0 build from surce**
+
 - **Mongo tools version 100.5.2**
     - **[mongodump](https://www.mongodb.com/docs/database-tools/mongodump/)**
     - **[mongoexport](https://www.mongodb.com/docs/database-tools/mongoexport/)**
