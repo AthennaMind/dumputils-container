@@ -49,3 +49,11 @@ alias pg_restore12='/usr/lib/postgresql/12/bin/pg_restore'
 alias pg_restore13='/usr/lib/postgresql/13/bin/pg_restore'
 alias pg_restore14='/usr/lib/postgresql/14/bin/pg_restore'
 alias pg_restore15='/usr/lib/postgresql/15/bin/pg_restore'
+
+# pg_basebackup aliases
+alias pg_basebackup10='/usr/lib/postgresql/10/bin/pg_basebackup'
+alias pg_basebackup11='/usr/lib/postgresql/11/bin/pg_basebackup'
+alias pg_basebackup12='/usr/lib/postgresql/12/bin/pg_basebackup'
+alias pg_basebackup13='/usr/lib/postgresql/13/bin/pg_basebackup'
+alias pg_basebackup14='/usr/lib/postgresql/14/bin/pg_basebackup'
+alias pg_basebackup15='/usr/lib/postgresql/15/bin/pg_basebackup'

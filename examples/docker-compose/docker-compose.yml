@@ -1,0 +1,60 @@
+version: '3.8'
+
+volumes:
+  dumputils:
+  postgres:
+  pgadmin:
+
+services:
+  postgres:
+    container_name: postgres
+    hostname: postgres
+    image: postgres:15.1
+    command:
+      - "-c"
+      - "max_connections=100"
+      - "-c"
+      - "shared_buffers=2GB"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+      PGDATA: "/data/postgres"
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin
+    hostname: pgadmin
+    image: "dpage/pgadmin4:6.17"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@local.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "15433:80"
+    depends_on:
+      - postgres
+    entrypoint:
+      - "/bin/sh"
+      - "-c"
+      - "/bin/echo 'postgres:5432:*:postgres:password' > /tmp/pgpassfile && chmod 600 /tmp/pgpassfile && rm -rf /var/lib/pgadmin/sessions/* && /entrypoint.sh"
+    restart: unless-stopped
+
+  dumputils:
+    container_name: dumputils
+    hostname: dumputils
+    image: "st3ga/dumputils:latest"
+    volumes:
+      - dumputils:/opt/backups
+      - /opt/shared/backups:/opt/shared
+    entrypoint:
+      - "/bin/sh"
+      - "-c"
+      - "tail -f /dev/null"
+    restart: unless-stopped

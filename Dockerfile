@@ -31,8 +31,8 @@ RUN mkdir -p /opt/backups /root/.config /root/.kube \
        # common utils
        vim gpg gnupg2 git ca-certificates software-properties-common apt-transport-https \
        # net utils
-       curl wget iputils-ping openssh-client \ 
-       # arhieve utils
+       curl wget iputils-ping openssh-client \
+       # achieve utils
        zip unzip bzip2 p7zip-full \
        # monitoring utils
        procps htop
@@ -45,7 +45,7 @@ RUN cd /tmp/ \
     && add-apt-repository "deb [arch=amd64,arm64,ppc64el] https://atl.mirrors.knownhost.com/mariadb/repo/10.8/ubuntu $(lsb_release -cs) main" \
     && curl -fsSL https://packages.redis.io/gpg | gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg \
     && echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/redis.list \
-    # update and install postgresclient, mariadb-client and redis-tools
+    # update and install postgres-client, mariadb-client and redis-tools
     && apt-get update -y \
     && apt-get install -y --no-install-recommends \
         postgresql-client-10 \
@@ -63,7 +63,7 @@ RUN cd /tmp/ \
     # install mongo tools
     && wget https://fastdl.mongodb.org/tools/db/mongodb-database-tools-debian10-x86_64-100.5.2.deb -O mongo-tools.deb \
     && dpkg -i mongo-tools.deb \
-    # Install kubectl 
+    # Install kubectl
     && curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
     && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
     # Install AWS cli
@@ -73,7 +73,7 @@ RUN cd /tmp/ \
     # Install bat
     && wget "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb" \
     && dpkg -i bat_0.22.1_amd64.deb \
-    # clean 
+    # clean
     && rm -rf /tmp/* \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /root/.wget-hsts

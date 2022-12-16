@@ -22,6 +22,7 @@ Table of Contents
     * **[Backup PostgreSQL and upload to S3](<#backup-postgresql-and-upload-to-s3>)**
     * **[Use your existing credentials](<#use-your-existing-credentials>)**
     * **[Run inside Kubernetes](<#run-inside-kubernetes>)**
+    * **[Add to docker-compose](<#add-to-docker-compose>)**
 <!--te-->
 
 ## What is it
@@ -37,6 +38,7 @@ This container provides easy access to most backup/restore utils for managing da
     - **[pg_dump](https://www.postgresql.org/docs/current/app-pgdump.html)**
     - **[pg_dumpall](https://www.postgresql.org/docs/current/app-pg-dumpall.html)**
     - **[pg_restore](https://www.postgresql.org/docs/current/app-pgrestore.html)**
+    - **[pg_basebackup](https://www.postgresql.org/docs/current/app-pgbasebackup.html)**
 
 - **[timescaledb-parallel-copy](https://github.com/timescale/timescaledb-parallel-copy) version v0.4.0 build from source**
 
@@ -201,3 +203,19 @@ $(kubectl get pods --template \
 ┌─[root@dumputils]─[~]
 └──╼ #
 ```
+
+### Add to docker-compose 
+
+To add dumputils to your existing docker-compose stack use this [example](https://github.com/st3ga/dumputils-container/blob/main/examples/docker-compose/docker-compose.yml#L49). 
+
+```bash
+# this will be mounted in dumputils so you can use the backups outside of the container
+mkdir -p /opt/shared/backups
+
+cd examples/docker-compose/ 
+
+docker-compose up -d 
+
+docker exec -it dumputils /bin/bash
+```
+
