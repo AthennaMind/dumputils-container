@@ -35,7 +35,9 @@ RUN mkdir -p /opt/backups /root/.config /root/.kube \
        # achieve utils
        zip unzip bzip2 p7zip-full \
        # monitoring utils
-       procps htop
+       procps htop \
+       # percona-toolkit dependencies
+       libdbi-perl libdbd-mysql-perl libterm-readkey-perl libio-socket-ssl-perl
 
 RUN cd /tmp/ \
     # add repository lists
@@ -66,6 +68,9 @@ RUN cd /tmp/ \
     # Install kubectl
     && curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
     && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
+    # Install percona-toolkit
+    && wget https://downloads.percona.com/downloads/percona-toolkit/3.5.0/binary/debian/jammy/x86_64/percona-toolkit_3.5.0-5.jammy_amd64.deb -O percona-toolkit.deb \
+    && dpkg -i percona-toolkit.deb \
     # Install AWS cli
     && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
     && unzip awscliv2.zip \
