@@ -1,4 +1,4 @@
-# function to extract common archieve formats
+# function to extract common archive formats
 function extract() {
     if [ -f "$1" ]; then
         case $1 in

@@ -28,7 +28,7 @@ services:
   pgadmin:
     container_name: pgadmin
     hostname: pgadmin
-    image: "dpage/pgadmin4:6.17"
+    image: "dpage/pgadmin4:6.18"
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@local.com
       PGADMIN_DEFAULT_PASSWORD: admin

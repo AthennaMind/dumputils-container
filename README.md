@@ -41,6 +41,7 @@ This container provides easy access to most backup/restore utils for managing da
     - **[pg_basebackup](https://www.postgresql.org/docs/current/app-pgbasebackup.html)**
 
 - **[timescaledb-parallel-copy](https://github.com/timescale/timescaledb-parallel-copy) version v0.4.0 build from source**
+- **[percona-toolkit](https://docs.percona.com/percona-toolkit/pt-archiver.html) version 3.5.0-2**
 
 - **Mongo tools version 100.5.2**
     - **[mongodump](https://www.mongodb.com/docs/database-tools/mongodump/)**

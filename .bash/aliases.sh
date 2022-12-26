@@ -3,7 +3,7 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-# common moving aliases
+# common move aliases
 alias cd.='cd ..'
 alias cd..='cd ../..'
 alias cd...='cd ../../..'
