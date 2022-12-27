@@ -17,6 +17,7 @@ ENV DEBIAN_FRONTEND noninteractive
 COPY doc /root/doc/
 COPY bin /root/bin/
 COPY .bashrc /root/
+COPY .vimrc /root/
 COPY .bash /root/.bash/
 COPY --from=timescaledb-parallel-copy-builder /build/timescaledb-parallel-copy /usr/bin/
 
@@ -78,6 +79,8 @@ RUN cd /tmp/ \
     # Install bat
     && wget "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb" \
     && dpkg -i bat_0.22.1_amd64.deb \
+    # configure vim \
+    && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim \
     # clean
     && rm -rf /tmp/* \
     && rm -rf /var/lib/apt/lists/* \
