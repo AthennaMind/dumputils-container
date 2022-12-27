@@ -32,7 +32,7 @@ RUN mkdir -p /opt/backups /root/.config /root/.kube \
        vim gpg gnupg2 git ca-certificates software-properties-common apt-transport-https \
        # net utils
        curl wget iputils-ping openssh-client \
-       # achieve utils
+       # archive utils
        zip unzip bzip2 p7zip-full \
        # monitoring utils
        procps htop \

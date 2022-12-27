@@ -18,7 +18,7 @@ Table of Contents
  * **[Usage](#usage)**  
     *  **[Run](#run)**  
     *  **[Build](#build)**  
- * **[Examples](#examples)**
+ * **[Example Usage](#examples)**
     * **[Backup PostgreSQL and upload to S3](<#backup-postgresql-and-upload-to-s3>)**
     * **[Use your existing credentials](<#use-your-existing-credentials>)**
     * **[Run inside Kubernetes](<#run-inside-kubernetes>)**
@@ -40,8 +40,8 @@ This container provides easy access to most backup/restore utils for managing da
     - **[pg_restore](https://www.postgresql.org/docs/current/app-pgrestore.html)**
     - **[pg_basebackup](https://www.postgresql.org/docs/current/app-pgbasebackup.html)**
 
-- **[timescaledb-parallel-copy](https://github.com/timescale/timescaledb-parallel-copy) version v0.4.0 build from source**
-- **[percona-toolkit](https://docs.percona.com/percona-toolkit/pt-archiver.html) version 3.5.0-2**
+- **[timescaledb-parallel-copy](https://github.com/timescale/timescaledb-parallel-copy) version v0.4.0**
+- **[percona-toolkit](https://docs.percona.com/percona-toolkit/) version 3.5.0-2**
 
 - **Mongo tools version 100.5.2**
     - **[mongodump](https://www.mongodb.com/docs/database-tools/mongodump/)**
@@ -74,7 +74,7 @@ This container provides easy access to most backup/restore utils for managing da
 - **[Redis cli](https://redis.io/docs/manual/cli/) latest stable version**
 - **[bat](https://github.com/sharkdp/bat) v0.22.1 for Syntax highlighting**
 - **net-utils, curl, wget**
-- **zip, unzip, tar, etc .. for archiving**
+- **zip, unzip, tar, etc...**
 - **aliases and nice shell prompt**
 - **shell utils (tmux, bat, htop)**
 - **How To common tricks**
@@ -105,12 +105,12 @@ docker run --rm --name dumputils \
 
 To run specific release version of your choice just use the desired release tag:
 
-- **Run version 1.1.0**
+- **Run version 1.2.0**
 
 ```bash
 docker run --rm --name dumputils \
 -h dumputils -v /opt/backups:/opt/backups \
--it st3ga/dumputils:1.1.0
+-it st3ga/dumputils:1.2.0
 ```
 
 ### Build
@@ -119,8 +119,8 @@ For restricted environments the image can be build with the above commands. Plea
 
 ```bash
 git clone https://github.com/st3ga/dumputils-container.git
-git checkout v1.1.0
-docker build -f Dockerfile -t registry.yourdomain.com/dumputils:1.1.0 .
+git checkout v1.2.0
+docker build -f Dockerfile -t registry.yourdomain.com/dumputils:1.2.0 .
 ```
 
 ## Examples
@@ -167,18 +167,18 @@ kubectl apply -f examples/k8s/deployment/
 kubectl get all -n dumputils
 
 NAME                             READY   STATUS    RESTARTS   AGE
-pod/dumputils-5db9795564-ct87j   1/1     Running   0          1m
+pod/dumputils-xxxx               1/1     Running   0          1m
 
-NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/dumputils   1/1     1            1           1m
+NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/dumputils        1/1      1            1           1m
 
-NAME                                   DESIRED   CURRENT   READY   AGE
-replicaset.apps/dumputils-5db9795564   1         1         1       1m
+NAME                                     DESIRED   CURRENT   READY   AGE
+replicaset.apps/dumputils-xxxx   1         1         1       1m
 
 kubectl get pvc -n dumputils
 
-NAME                STATUS   VOLUME    CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-dumputils-storage   Bound    pvc-xxx   5Gi        RWO            local-path     1m
+NAME                             STATUS   VOLUME    CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+dumputils-storage                Bound    pvc-xxx   5Gi        RWO            local-path     1m
 ```
 
 - Use 
@@ -207,10 +207,11 @@ $(kubectl get pods --template \
 
 ### Add to docker-compose 
 
-To add dumputils to your existing docker-compose stack use this [example](https://github.com/st3ga/dumputils-container/blob/main/examples/docker-compose/docker-compose.yml#L49). 
+To add dumputils to your existing docker-compose stack refer to this [example](https://github.com/st3ga/dumputils-container/blob/main/examples/docker-compose/docker-compose.yml#L49). 
 
 ```bash
-# this will be mounted in dumputils so you can use the backups outside of the container
+# /opt/shared/backups will be mounted in dumputils so you can use 
+# created backups outside of the container
 mkdir -p /opt/shared/backups
 
 cd examples/docker-compose/ 
@@ -218,5 +219,7 @@ cd examples/docker-compose/
 docker-compose up -d 
 
 docker exec -it dumputils /bin/bash
+[root@dumputils] cd /opt/shared/backups/
+[root@dumputils] pg_dump12 .... 
 ```
 

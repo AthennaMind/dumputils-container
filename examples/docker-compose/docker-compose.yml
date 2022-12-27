@@ -52,7 +52,7 @@ services:
     image: "st3ga/dumputils:latest"
     volumes:
       - dumputils:/opt/backups
-      - /opt/shared/backups:/opt/shared
+      - /opt/shared/backups:/opt/shared/backups
     entrypoint:
       - "/bin/sh"
       - "-c"
