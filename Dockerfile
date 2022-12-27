@@ -1,4 +1,4 @@
-FROM golang:1.19.3-alpine AS timescaledb-parallel-copy-builder
+FROM golang:1.19.4-alpine AS timescaledb-parallel-copy-builder
 ENV TS_PARALLEL_COPY_VERSION="v0.4.0"
 RUN apk add git --no-cache
 
@@ -60,31 +60,33 @@ RUN cd /tmp/ \
         mariadb-client \
         redis-tools \
     # install minio client
-    && wget https://dl.min.io/client/mc/release/linux-amd64/mc \
+    && wget -q https://dl.min.io/client/mc/release/linux-amd64/mc \
     && mv mc /usr/local/bin/mc \
     && chmod +x /usr/local/bin/mc \
     # install mongo tools
-    && wget https://fastdl.mongodb.org/tools/db/mongodb-database-tools-debian10-x86_64-100.5.2.deb -O mongo-tools.deb \
+    && wget -q https://fastdl.mongodb.org/tools/db/mongodb-database-tools-debian10-x86_64-100.5.2.deb -O mongo-tools.deb \
     && dpkg -i mongo-tools.deb \
     # Install kubectl
     && curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
     && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
     # Install percona-toolkit
-    && wget https://downloads.percona.com/downloads/percona-toolkit/3.5.0/binary/debian/jammy/x86_64/percona-toolkit_3.5.0-5.jammy_amd64.deb -O percona-toolkit.deb \
+    && wget -q https://downloads.percona.com/downloads/percona-toolkit/3.5.0/binary/debian/jammy/x86_64/percona-toolkit_3.5.0-5.jammy_amd64.deb -O percona-toolkit.deb \
     && dpkg -i percona-toolkit.deb \
     # Install AWS cli
     && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
     && unzip awscliv2.zip \
     && ./aws/install \
     # Install bat
-    && wget "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb" \
+    && wget -q "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb" \
     && dpkg -i bat_0.22.1_amd64.deb \
     # configure vim \
-    && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim \
+    && git clone https://github.com/VundleVim/Vundle.vim.git --depth=1 --branch master --single-branch ~/.vim/bundle/Vundle.vim \
+    && vim +VundleInstall +qall \
     # clean
     && rm -rf /tmp/* \
     && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /root/.wget-hsts
+    && rm -rf /root/.wget-hsts \
+    && rm -rf /root/.vim/bundle/Vundle.vim/.git
 
 WORKDIR /root
 
