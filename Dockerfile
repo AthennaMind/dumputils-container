@@ -1,4 +1,4 @@
-FROM golang:1.19.4-alpine AS timescaledb-parallel-copy-builder
+FROM golang:1.19.4-alpine AS golang-builder
 ENV TS_PARALLEL_COPY_VERSION="v0.4.0"
 RUN apk add git --no-cache
 
@@ -12,6 +12,8 @@ RUN git clone https://github.com/timescale/timescaledb-parallel-copy.git \
 
 FROM ubuntu:22.04
 
+ENV MONGO_TOOLS_VERSION="100.5.2"
+ENV BAT_VERSION="0.22.1"
 ENV DEBIAN_FRONTEND noninteractive
 
 COPY doc /root/doc/
@@ -19,7 +21,7 @@ COPY bin /root/bin/
 COPY .bashrc /root/
 COPY .vimrc /root/
 COPY .bash /root/.bash/
-COPY --from=timescaledb-parallel-copy-builder /build/timescaledb-parallel-copy /usr/bin/
+COPY --from=golang-builder /build/timescaledb-parallel-copy /usr/bin/
 
     # create base dirs
 RUN mkdir -p /opt/backups /root/.config /root/.kube \
@@ -64,7 +66,7 @@ RUN cd /tmp/ \
     && mv mc /usr/local/bin/mc \
     && chmod +x /usr/local/bin/mc \
     # install mongo tools
-    && wget -q https://fastdl.mongodb.org/tools/db/mongodb-database-tools-debian10-x86_64-100.5.2.deb -O mongo-tools.deb \
+    && wget -q https://fastdl.mongodb.org/tools/db/mongodb-database-tools-debian10-x86_64-${MONGO_TOOLS_VERSION}.deb -O mongo-tools.deb \
     && dpkg -i mongo-tools.deb \
     # Install kubectl
     && curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
@@ -77,8 +79,8 @@ RUN cd /tmp/ \
     && unzip awscliv2.zip \
     && ./aws/install \
     # Install bat
-    && wget -q "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb" \
-    && dpkg -i bat_0.22.1_amd64.deb \
+    && wget -q "https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_amd64.deb" -O bat.deb \
+    && dpkg -i bat.deb \
     # configure vim
     && git clone https://github.com/VundleVim/Vundle.vim.git --depth=1 --branch master --single-branch ~/.vim/bundle/Vundle.vim \
     && vim +VundleInstall +qall \
