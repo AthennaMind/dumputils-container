@@ -4,17 +4,18 @@ This container provides the following bash aliases
 
 - **Shell**
 
-| Alias   |                         Destination                          |
-|---------|:------------------------------------------------------------:|
-| rm      |                            rm -i                             |
-| cp      |                            cp -i                             |
-| mv      |                            mv -i                             |
-| cd.     |                            cd ..                             |
-| cd..    |                           cd ../..                           |
-| cd...   |                         cd ../../..                          |
-| cat     |                           bat -pp                            |
-| extract | function which recognise the archieve format and extracts it |
-| aliases |                      show this document                      |
+| Alias    |                         Destination                         |
+|----------|:-----------------------------------------------------------:|
+| rm       |                            rm -i                            |
+| cp       |                            cp -i                            |
+| mv       |                            mv -i                            |
+| cd.      |                            cd ..                            |
+| cd..     |                          cd ../..                           |
+| cd...    |                         cd ../../..                         |
+| cat      |                           bat -pp                           |
+| extract  | function which recognise the archive format and extracts it |
+| curltime |       function which measure response time with curl        |
+| aliases  |                     show this document                      |
 
 - **Kubectl**
 

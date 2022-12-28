@@ -191,7 +191,7 @@ dumputils-storage                Bound    pvc-xxx   5Gi        RWO            lo
 
 - Use 
 
-From now on you can use your dumputils instance by starting a shell with the following commands
+From now on you can use your dumputils instance by starting a shell with the following commands:
 
 ```bash
 kubectl exec -it \
@@ -230,4 +230,3 @@ docker exec -it dumputils /bin/bash
 [root@dumputils] cd /opt/shared/backups/
 [root@dumputils] pg_dump14 .... 
 ```
-
