@@ -33,13 +33,13 @@ Table of Contents
 
 ## What is it
 
-This container provides easy access to most backup/restore utils for managing database backups. Additional aliases and help scripts has been added. It aims to solve the problem of installing different versions of tools and their dependencies on your local machine or server. It presents you with a structured shell environment where you can make your backup/restore procedures manually or automate with scripts while running inside Docker Compose or Kubernetes.
+This container simplifies the process of managing database backups by providing easy access to a range of backup and restore utilities. It includes additional aliases and helpful scripts to make it easier to use, and is designed to solve the problem of installing and managing multiple versions of tools and their dependencies on your local machine or server. It presents you with a structured shell environment where you can make your backup/restore procedures manually or automate with scripts while running inside Docker Compose or Kubernetes.
 
 ## What's inside
 
 ### Tools
 
-- **PostgreSQL Client Tools Version: 11, 12, 13, 14 and 15**
+- **PostgreSQL Client Tools Version: 10, 11, 12, 13, 14 and 15**
     - **[psql](https://www.postgresql.org/docs/15/app-psql.html)**
     - **[pg_dump](https://www.postgresql.org/docs/current/app-pgdump.html)**
     - **[pg_dumpall](https://www.postgresql.org/docs/current/app-pg-dumpall.html)**
@@ -121,7 +121,7 @@ docker run --rm --name dumputils \
 
 ### Build
 
-For restricted environments the image can be build with the above commands. Please note that the main branch is considered unstable. Use the latest release tag.
+If you are on restricted environment, you can build the image using the above commands. Please note that the main branch is considered unstable, so it is recommended to use the latest release tag for the most stable version.
 
 ```bash
 git clone https://github.com/st3ga/dumputils-container.git
@@ -139,7 +139,9 @@ Using the container to do manual backup of database called `sales` inside Postgr
 user@machine: mkdir -p /opt/backups
 user@machine: docker run --rm --name dumputils -h dumputils -v /opt/backups:/opt/backups -it st3ga/dumputils:latest
 
-[root@dumputils] cd /opt/backups/ && export PGPASSWORD="<password>" && pg_dump12 -h 192.168.1.5 -p 5432 -U <user> -F t sales > sales.tar
+[root@dumputils] cd /opt/backups/ 
+[root@dumputils] export PGPASSWORD="<password>" 
+[root@dumputils] pg_dump12 -h 192.168.1.5 -p 5432 -U <user> -F t sales > sales.tar
 [root@dumputils] export AWS_ACCESS_KEY_ID=<key-id> && export AWS_SECRET_ACCESS_KEY=<acces-key>
 [root@dumputils] aws s3 cp sales.tar s3://test/backups/
 ```
@@ -226,6 +228,6 @@ docker-compose up -d
 
 docker exec -it dumputils /bin/bash
 [root@dumputils] cd /opt/shared/backups/
-[root@dumputils] pg_dump12 .... 
+[root@dumputils] pg_dump14 .... 
 ```
 

@@ -79,7 +79,7 @@ RUN cd /tmp/ \
     # Install bat
     && wget -q "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb" \
     && dpkg -i bat_0.22.1_amd64.deb \
-    # configure vim \
+    # configure vim
     && git clone https://github.com/VundleVim/Vundle.vim.git --depth=1 --branch master --single-branch ~/.vim/bundle/Vundle.vim \
     && vim +VundleInstall +qall \
     # clean
