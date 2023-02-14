@@ -78,6 +78,7 @@ This container simplifies the process of managing database backups by providing 
 - **[MinIO Client](https://min.io/docs/minio/linux/reference/minio-mc.html) latest stable version**
 - **[AWS cli](https://aws.amazon.com/cli/) latest stable version**
 - **[Redis cli](https://redis.io/docs/manual/cli/) latest stable version**
+- **[kcat (kafkacat)](https://github.com/edenhill/kcat) Version 1.6.0**
 - **[bat](https://github.com/sharkdp/bat) v0.22.1 for Syntax highlighting**
 - **net-utils, curl, wget**
 - **zip, unzip, tar, etc...**

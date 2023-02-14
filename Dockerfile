@@ -1,4 +1,4 @@
-FROM golang:1.19.4-alpine AS golang-builder
+FROM golang:1.20-alpine AS golang-builder
 ENV TS_PARALLEL_COPY_VERSION="v0.4.0"
 RUN apk add git --no-cache
 
@@ -61,6 +61,7 @@ RUN cd /tmp/ \
         postgresql-client-15 \
         mariadb-client \
         redis-tools \
+        kafkacat \
     # install minio client
     && wget -q https://dl.min.io/client/mc/release/linux-amd64/mc \
     && mv mc /usr/local/bin/mc \
