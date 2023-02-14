@@ -112,12 +112,12 @@ docker run --rm --name dumputils \
 
 To run specific release version of your choice just use the desired release tag:
 
-- **Run version 1.2.0**
+- **Run version 1.3.0**
 
 ```bash
 docker run --rm --name dumputils \
 -h dumputils -v /opt/backups:/opt/backups \
--it st3ga/dumputils:1.2.0
+-it st3ga/dumputils:1.3.0
 ```
 
 ### Build
@@ -126,8 +126,8 @@ If you are on restricted environment, you can build the image using the above co
 
 ```bash
 git clone https://github.com/st3ga/dumputils-container.git
-git checkout v1.2.0
-docker build -f Dockerfile -t registry.yourdomain.com/dumputils:1.2.0 .
+git checkout v1.3.0
+docker build -f Dockerfile -t registry.yourdomain.com/dumputils:1.3.0 .
 ```
 
 ## Examples
