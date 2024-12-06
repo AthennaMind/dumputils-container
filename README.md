@@ -3,9 +3,7 @@
 
 # Dumputils Container
 
-![license](https://img.shields.io/github/license/st3ga/dumputils-container) [![build](https://github.com/st3ga/dumputils-container/actions/workflows/build.yml/badge.svg)](https://github.com/st3ga/dumputils-container/actions/workflows/build.yml) ![pulls](https://img.shields.io/docker/pulls/st3ga/dumputils?style=flat)
-
- **`🚀 blazingly-usefull! Please contribute if you have anything to add!`**
+![license](https://img.shields.io/github/license/st3ga/dumputils-container) [![build](https://github.com/st3ga/dumputils-container/actions/workflows/build.yml/badge.svg)](https://github.com/st3ga/dumputils-container/actions/workflows/build.yml)
 
 </div>
 
@@ -38,7 +36,7 @@ This container simplifies the process of managing database backups by providing 
 
 ### Tools
 
-* **PostgreSQL Client Tools Version: 10, 11, 12, 13, 14 and 15**
+* **PostgreSQL Client Tools Version: 10, 11, 12, 13, 14, 15, 16, 17**
   * **[psql](https://www.postgresql.org/docs/15/app-psql.html)**
   * **[pg_dump](https://www.postgresql.org/docs/current/app-pgdump.html)**
   * **[pg_dumpall](https://www.postgresql.org/docs/current/app-pg-dumpall.html)**
