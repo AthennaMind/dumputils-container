@@ -23,7 +23,7 @@ spec:
       terminationGracePeriodSeconds: 60
       containers:
         - name: dumputils-shell
-          image: st3ga/dumputils:latest
+          image: "ghcr.io/athennamind/dumputils:latest"
           imagePullPolicy: IfNotPresent
           command: ["sh", "-c", "tail -f /dev/null"]
           resources: {}

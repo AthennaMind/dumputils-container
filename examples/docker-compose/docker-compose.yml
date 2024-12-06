@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 volumes:
   dumputils:
@@ -49,7 +49,7 @@ services:
   dumputils:
     container_name: dumputils
     hostname: dumputils
-    image: "st3ga/dumputils:latest"
+    image: "ghcr.io/athennamind/dumputils:latest"
     volumes:
       - dumputils:/opt/backups
       - /opt/shared/backups:/opt/shared/backups

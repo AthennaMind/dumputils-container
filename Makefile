@@ -1,6 +1,6 @@
 DOCKER := $(shell command -v docker)
 
-IMAGE_TAG := st3ga/dumputils:local-test
+IMAGE_TAG := ghcr.io/athennamind/dumputils:local-test
 
 .PHONY: default
 default: build-run
