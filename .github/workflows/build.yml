@@ -20,7 +20,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ghcr.io/st3ga/dumputils
+            ghcr.io/athennamind/dumputils
           tags: |
             type=semver,pattern={{version}}
       - name: Set up QEMU
