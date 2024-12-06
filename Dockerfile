@@ -46,8 +46,6 @@ RUN cd /tmp/ \
   # add repository lists
   && curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg \
   && echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list \
-  && apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc' \
-  && add-apt-repository "deb [arch=amd64,arm64,ppc64el] https://atl.mirrors.knownhost.com/mariadb/repo/10.8/ubuntu $(lsb_release -cs) main" \
   && curl -fsSL https://packages.redis.io/gpg | gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg \
   && echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/redis.list \
   # update and install postgres-client, mariadb-client and redis-tools
@@ -61,7 +59,6 @@ RUN cd /tmp/ \
   postgresql-client-15 \
   postgresql-client-16 \
   postgresql-client-17 \
-  mariadb-client \
   redis-tools \
   kafkacat \
   # install minio client
